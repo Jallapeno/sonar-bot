@@ -1,0 +1,27 @@
+{
+  "name": "sonar-bot",
+  "version": "1.0.0",
+  "description": "Automatically create a sonar project for each folder created in the root here.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch index.js"
+  },
+  "keywords": [
+    "sonar",
+    "bot",
+    "sonarqube"
+  ],
+  "author": "Hytalo Antonio - Jallapeno",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "prisma": "^5.6.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.6.0",
+    "express": "^4.18.2"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  }
+}
