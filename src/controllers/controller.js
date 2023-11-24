@@ -14,10 +14,15 @@ export const controller = {
     foldersNonExistents = service.compareAndViewIfNotExistItems(directoriesListed, nameFolderListed);
 
     if(foldersNonExistents.length > 0) {
-      newFoldersCreated = await foldersNonExistents.forEach(element => { service.createNewFolder(element) });
-    }
+      newFoldersCreated = await Promise.all(
+        foldersNonExistents.map(async (element) => {
+          const response = await service.createNewFolder(element);
+          return response;
+        })
+      );
 
-    return newFoldersCreated
+      return newFoldersCreated;
+    }
 
   }
 }
