@@ -1,9 +1,9 @@
-import { service } from './services/services.js';
+import { controller } from "./controllers/controller.js";
 
 export const handle = async () => {
 
   try {
-    await service.perform()
+    await controller.perform()
   } catch (error) {
     console.log('Fatal error', error);
   }
