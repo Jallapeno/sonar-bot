@@ -18,6 +18,7 @@ export const repository = {
       return await prisma.folder.create({
         data: title
       , select: {
+        id: true,
         title: true
       }
     })
