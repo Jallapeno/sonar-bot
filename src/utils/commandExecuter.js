@@ -1,5 +1,5 @@
 import { exec } from 'child_process';
-// Função que executa comandos no linux
+// Function that executes commands in Linux
 export const commandExecuter = (command) => {
     return new Promise((resolve, reject) => {
         exec(command, (error, stdout, stderr) => {
