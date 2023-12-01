@@ -8,21 +8,23 @@ export const controller = {
     let foldersNonExistents = [];
     let newFoldersCreated = [];
 
-    await getDirectories("./directories").then( directories => directoriesListed = directories)
+    directoriesListed = await getDirectories("./directories").then( directories => directories)
     nameFolderListed = await service.getAllFolders()
-
-    foldersNonExistents = service.compareAndViewIfNotExistItems(directoriesListed, nameFolderListed);
+    foldersNonExistents.push(...service.compareAndViewIfNotExistItems(directoriesListed, nameFolderListed));
 
     if(foldersNonExistents.length > 0) {
-      newFoldersCreated = await Promise.all(
-        foldersNonExistents.map(async (element) => {
-          const response = await service.createNewFolder(element);
-          return response;
-        })
-      );
+      try {
+        newFoldersCreated = await Promise.all(foldersNonExistents.map(async (title) => {
+          return await service.createNewFolder(title);
+        }));
 
-      return newFoldersCreated;
+        console.log('all folders created', newFoldersCreated);
+      } catch (error) {
+        console.log('Erro to create new folders', error);
+        throw error
+      }
+    } else {
+      console.log('not folders to create');
     }
-
   }
 }

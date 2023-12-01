@@ -8,9 +8,14 @@ export const service = {
     return arr1.filter(item1 => !mapArr2.has(item1.title));
   },
 
-  createNewFolder: async(title) => {
-    return await repository.createNewFolder(title)
-  },
+  createNewFolder: async ({ title }) => {
+    try {
+        return await repository.createNewFolder({ title });
+    } catch (error) {
+        console.log('Service error @createNewFolder', error);
+        throw error;
+    }
+},
 
   getAllFolders: async() => {
     return await repository.getAllFolders()

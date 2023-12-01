@@ -13,17 +13,18 @@ export const repository = {
           console.log(error);
       }
   },
-  createNewFolder: async(title) => {
+  createNewFolder: async ({ title }) => {
     try {
-      return await prisma.folder.create({
-        data: title
-      , select: {
-        id: true,
-        title: true
-      }
-    })
+        return await prisma.folder.create({
+            data: { title },
+            select: {
+                id: true,
+                title: true
+            }
+        });
     } catch (error) {
-      console.log(error);
+        console.log('Repository error @createNewFolder', error);
+        throw error;
     }
-  }
+}
 }
