@@ -1,6 +1,6 @@
-import { repository } from '../repositories/repository.js';
+import { foldersRepository } from '../repositories/foldersRepository.js';
 
-export const service = {
+export const foldersServices = {
 
   // Filters items from arr1 that are not present in arr2
   compareAndViewIfNotExistItems: (arr1, arr2) => {
@@ -10,15 +10,15 @@ export const service = {
 
   createNewFolder: async ({ title }) => {
     try {
-        return await repository.createNewFolder({ title });
+        return await foldersRepository.createNewFolder({ title });
     } catch (error) {
         console.log('Service error @createNewFolder', error);
         throw error;
     }
-},
+  },
 
   getAllFolders: async() => {
-    return await repository.getAllFolders()
+    return await foldersRepository.getAllFolders()
   }
 
 }

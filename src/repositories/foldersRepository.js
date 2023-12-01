@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-export const repository = {
+export const foldersRepository = {
   getAllFolders: async(req, res) => {
       try {
           return await prisma.folder.findMany({
