@@ -13,5 +13,6 @@ datasource db {
 model Folder {
   id Int @id @default(autoincrement())
   title String @unique
+  key String @unique
   sonar_token String? @unique
 }
