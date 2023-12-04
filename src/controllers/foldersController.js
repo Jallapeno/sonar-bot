@@ -1,5 +1,6 @@
 import { foldersServices } from "../services/foldersServices.js";
 import { getDirectories } from '../utils/getDirectories.js';
+import { compareAndViewIfNotExistItems } from "../utils/compareArrayItens.js";
 
 export const foldersController = {
   perform: async() => {
@@ -10,7 +11,7 @@ export const foldersController = {
 
     directoriesListed = await getDirectories("./directories").then( directories => directories)
     nameFolderListed = await foldersServices.getAllFolders()
-    foldersNonExistents.push(...foldersServices.compareAndViewIfNotExistItems(directoriesListed, nameFolderListed));
+    foldersNonExistents.push(...compareAndViewIfNotExistItems(directoriesListed, nameFolderListed));
 
     if(foldersNonExistents.length > 0) {
       try {

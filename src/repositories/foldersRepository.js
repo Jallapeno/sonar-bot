@@ -16,10 +16,10 @@ export const foldersRepository = {
   createNewFolder: async ({ title }) => {
     try {
         return await prisma.folder.create({
-            data: { title },
+            data: { title, key: title },
             select: {
-                id: true,
-                title: true
+                title: true,
+                key: true
             }
         });
     } catch (error) {
