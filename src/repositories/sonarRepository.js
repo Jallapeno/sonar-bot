@@ -2,8 +2,6 @@ import { commandExecuter } from '../utils/commandExecuter.js';
 import fetch from 'node-fetch';
 
 const sonarqubeUrl = process.env.SONARQUBE_API_URL;
-// const token = 'sqa_e491a890989613ecc63e56f242372e26d8ae3f64';
-const token = 'sqa_ad2c288094cd136bc833413731f6854213862ee8'
 const username = process.env.USERNAME
 const password = process.env.PASSWORD;
 const authHeader = `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
