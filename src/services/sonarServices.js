@@ -1,26 +1,32 @@
-import fetch from 'node-fetch';
-
-const sonarqubeUrl = 'http://localhost:9000';
-const username = 'sonarqube user';
-const password = 'sonarqube password';
-const headers = { Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}` }
+import { pipeline } from 'stream/promises';
+import { Writable, Readable } from 'stream';
+import { sonarRepository } from "../repositories/sonarRepository.js"
+import { CreateProjectStream } from '../middleware/createProjectStream.js';
 
 export const sonarServices = {
   getAllProjects: async () => {
     try {
-      const response = await fetch(`${sonarqubeUrl}/api/projects/search`, {
-        headers: headers
-      });
-
-      if (response.ok) {
-        const projects = await response.json();
-        return projects
-      } else {
-        console.error(`Erro ao obter a lista de projetos. Código de status: ${response.status}`);
-        console.error(await response.text());
-      }
+      return await sonarRepository.getAllProjects()
     } catch (error) {
-      console.error('Erro na solicitação:', error.message);
+      console.log('Service error @getAllProjects', error);
+      throw error;
     }
   },
+  createNewProject: async (projects) => {
+    try {
+      const createProjectStream = new CreateProjectStream();
+      const readable = Readable.from(projects);
+      const writable = new Writable({ objectMode: true, write: () => {} });
+
+      await pipeline(
+        readable,
+        createProjectStream,
+        writable
+      );
+      console.log('All projects are created!');
+    } catch (error) {
+      console.error(`Service error @createNewProject`, error);
+    }
+  }
+
 }
