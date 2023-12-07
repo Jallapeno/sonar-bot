@@ -26,5 +26,20 @@ export const foldersRepository = {
         console.log('Repository error @createNewFolder', error);
         throw error;
     }
-}
+  },
+  insertProjectTokenByProjecctKeyOnDb: async({ key, token }) => {
+    try {
+      return await prisma.folder.update({
+        where: {
+          key
+        },
+        data: {
+          sonar_token: token
+        }
+      })
+    } catch (error) {
+      console.error('Repository error @insertProjectTokenOnDB', error.message);
+      throw error;
+    }
+  }
 }

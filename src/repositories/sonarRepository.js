@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { commandExecuter } from '../utils/commandExecuter.js';
 
 const sonarqubeUrl = process.env.SONARQUBE_API_URL;
 const username = process.env.ADMUSERNAME
@@ -51,7 +52,6 @@ export const sonarRepository = {
     }
   },
   createProjectAnalysisToken: async ({ key }) => {
-    console.log(key);
     try {
       const searchParams = new URLSearchParams();
       searchParams.append('name', key);
@@ -77,5 +77,16 @@ export const sonarRepository = {
       console.error('Repository error @createProjectAnalysisToken', error.message);
       throw error;
     }
+  },
+  startScanner: async({ key, token, name }) => {
+    commandExecuter(
+      `cd directories/${name} && sonar-scanner -Dsonar.projectKey=${key} -Dsonar.sources=. -Dsonar.host.url=${sonarqubeUrl} -Dsonar.login=${token}`
+    )
+    .then((result) => {
+      console.log(`\n${result}`);
+    })
+    .catch((error) => {
+      console.error(`@startScanner repository. Erro during command executing: ${error.message}`);
+    });
   }
 }

@@ -16,20 +16,19 @@ export const sonarCreateController = {
 
     foldersNonExistentsInSonar.push(...compareAndViewIfNotExistItems(newFoldersCreated, projectsFindedInSonar));
 
-    if(foldersNonExistentsInSonar.length == 0) {
-      await sonarServices.createNewProject(foldersNonExistentsInSonar)
-
-      await sonarServices.getAllProjects().then(projects => {
-        projects.components.map(project => {
-          newProjectsCreated.push({title: project.name, key: project.key})
-        })
-      })
-
-      projectTokensCreated = await Promise.all(newProjectsCreated.map(async (newProject) => {
-        return await sonarServices.createProjectAnalysisToken(newProject)
-      }))
-      console.log(projectTokensCreated);
-      return projectTokensCreated;
+    if(foldersNonExistentsInSonar.length > 0) {
+      try {
+        newProjectsCreated = await Promise.all(foldersNonExistentsInSonar.map(async (project) => {
+          return await sonarServices.createNewProject(project)
+        }))
+        projectTokensCreated = await Promise.all(newProjectsCreated.map(async (newProject) => {
+          return await sonarServices.createProjectAnalysisToken(newProject.project)
+        }))
+        return projectTokensCreated;
+      } catch (error) {
+        console.log('Erro to create new project', error);
+        throw error
+      }
     } else {
       console.log('not projects to create in sonar');
     }
