@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" modified="2023-11-24T01:18:35.224Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="aRx2LapaQ2qVRwg3nPjE" version="22.1.3" type="github">
+  <diagram name="PÃ¡gina-1" id="DLG2FzNeoyg6u9K-KBL_">
+    <mxGraphModel dx="2074" dy="782" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <object label="" id="0">
+          <mxCell />
+        </object>
+        <mxCell id="1" parent="0" />
+        <mxCell id="iafW7D8mcAmdj1RmASHA-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iafW7D8mcAmdj1RmASHA-1" target="iafW7D8mcAmdj1RmASHA-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-1" value="Bot í ¾í´–" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="70" width="50" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iafW7D8mcAmdj1RmASHA-2" target="iafW7D8mcAmdj1RmASHA-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-2" value="Handle / perform" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="210" y="75" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iafW7D8mcAmdj1RmASHA-4" target="iafW7D8mcAmdj1RmASHA-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iafW7D8mcAmdj1RmASHA-4" target="iafW7D8mcAmdj1RmASHA-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="186" />
+              <mxPoint x="520" y="186" />
+              <mxPoint x="520" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-4" value="Get folders name into &quot;directories&quot; dir" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="77.5" width="140" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iafW7D8mcAmdj1RmASHA-6" target="iafW7D8mcAmdj1RmASHA-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="186" />
+              <mxPoint x="640" y="186" />
+              <mxPoint x="640" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-6" value="Get folders names into DB" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="78.75" width="150" height="72.5" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="iafW7D8mcAmdj1RmASHA-8" target="iafW7D8mcAmdj1RmASHA-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-8" value="Compare and view if not exists in DB" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="540" y="220" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-14" value="Not" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iafW7D8mcAmdj1RmASHA-11" target="iafW7D8mcAmdj1RmASHA-13">
+          <mxGeometry x="-0.6923" y="-10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-16" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iafW7D8mcAmdj1RmASHA-11" target="iafW7D8mcAmdj1RmASHA-15">
+          <mxGeometry x="-0.6" y="-20" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-11" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="370" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="iafW7D8mcAmdj1RmASHA-13" target="iafW7D8mcAmdj1RmASHA-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-13" value="Create new data with folder name in DB" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-15" value="end" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="545" y="500" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iafW7D8mcAmdj1RmASHA-17" value="Create new project in SonarQube" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

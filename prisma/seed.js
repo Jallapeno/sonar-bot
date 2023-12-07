@@ -8,7 +8,8 @@ async function main() {
     },
     update: {},
     create: {
-      title: "test01"
+      title: "test01",
+      sonar_token: "tokentest01"
     }
   })
 
@@ -18,7 +19,8 @@ async function main() {
     },
     update: {},
     create: {
-      title: "test02"
+      title: "test02",
+      sonar_token: "tokentest02"
     }
   })
 }

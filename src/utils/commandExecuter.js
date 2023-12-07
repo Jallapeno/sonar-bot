@@ -1,8 +1,8 @@
 import { exec } from 'child_process';
-// Função que executa comandos no linux
+// Function that executes commands in Linux
 export const commandExecuter = (command) => {
     return new Promise((resolve, reject) => {
-        exec(command, (error, stdout, stderr) => {
+        exec(`${command}`,(error, stdout, stderr) => {
           if (error) {
             reject(error);
             return;
@@ -15,13 +15,3 @@ export const commandExecuter = (command) => {
         });
     });
 }
-
-// * example to use
-// executeCommand('ls')
-//   .then((result) => {
-//     console.log(`\n${result}`);
-//   })
-//   .catch((error) => {
-//     console.error(`Erro during command executing: ${error.message}`);
-//   });
-// console.log(directoriesListed);
