@@ -9,7 +9,7 @@ export const foldersController = {
     let foldersNonExistents = [];
     let newFoldersCreated = [];
 
-    directoriesListed = await getDirectories("./directories").then( directories => directories)
+    directoriesListed = await getDirectories(`${process.env.DIRECTORY}`).then(directories => directories)
     nameFolderListed = await foldersServices.getAllFolders()
     foldersNonExistents.push(...compareAndViewIfNotExistItems(directoriesListed, nameFolderListed));
 
