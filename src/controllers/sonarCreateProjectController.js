@@ -5,7 +5,8 @@ export const sonarCreateController = {
   perform: async(newFoldersCreated) => {
     let projectsFindedInSonar = []
     let foldersNonExistentsInSonar = []
-    // let newProjectsCreated = []
+    let newProjectsCreated = []
+    let projectTokensCreated = []
 
     await sonarServices.getAllProjects().then(projects => {
       projects.components.map(project => {
@@ -15,9 +16,22 @@ export const sonarCreateController = {
 
     foldersNonExistentsInSonar.push(...compareAndViewIfNotExistItems(newFoldersCreated, projectsFindedInSonar));
 
-    await sonarServices.createNewProject(foldersNonExistentsInSonar)
+    if(foldersNonExistentsInSonar.length == 0) {
+      await sonarServices.createNewProject(foldersNonExistentsInSonar)
 
-    // TODO - Verify if sonar project exists in DB case not then insert a new register in DB
-    // projectsNonExistentsInDB.push(...compareAndViewIfNotExistItems(projectsListedInSonar, newFoldersCreated));
+      await sonarServices.getAllProjects().then(projects => {
+        projects.components.map(project => {
+          newProjectsCreated.push({title: project.name, key: project.key})
+        })
+      })
+
+      projectTokensCreated = await Promise.all(newProjectsCreated.map(async (newProject) => {
+        return await sonarServices.createProjectAnalysisToken(newProject)
+      }))
+      console.log(projectTokensCreated);
+      return projectTokensCreated;
+    } else {
+      console.log('not projects to create in sonar');
+    }
   }
 }

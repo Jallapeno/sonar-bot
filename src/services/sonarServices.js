@@ -24,8 +24,16 @@ export const sonarServices = {
         writable
       );
       console.log('All projects are created!');
+      return createProjectStream;
     } catch (error) {
       console.error(`Service error @createNewProject`, error);
+    }
+  },
+  createProjectAnalysisToken: async (projects) => {
+    try {
+      return await sonarRepository.createProjectAnalysisToken({key: projects.key})
+    } catch (error) {
+      console.error(`Service error @createProjectAnalysisToken`, error);
     }
   }
 

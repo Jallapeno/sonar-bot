@@ -1,10 +1,13 @@
-import { commandExecuter } from '../utils/commandExecuter.js';
 import fetch from 'node-fetch';
 
 const sonarqubeUrl = process.env.SONARQUBE_API_URL;
-const username = process.env.USERNAME
-const password = process.env.PASSWORD;
+const username = process.env.ADMUSERNAME
+const password = process.env.ADMPASSWORD;
 const authHeader = `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+
+const usernameUser = process.env.USERNAME
+const passwordUser = process.env.PASSWORD;
+const userAuthHeader = `Basic ${Buffer.from(`${usernameUser}:${passwordUser}`).toString('base64')}`
 
 export const sonarRepository = {
   getAllProjects: async () => {
@@ -21,20 +24,58 @@ export const sonarRepository = {
         console.error(await response.text());
       }
     } catch (error) {
-      console.error('Service error @getAllProjects', error.message);
+      console.error('Repository error @getAllProjects', error.message);
     }
   },
   createNewProject: async ({ title }) => {
     try {
-      await commandExecuter(`curl -X POST -u ${username}:${password} -d "name=${title}" -d "key=${title}" -d "project=${title}" ${sonarqubeUrl}/api/projects/create`)
-      .then(async (result) => {
-        return await result
-      })
-      .catch((error) => {
-        console.error(`Erro during command executing: ${error}`);
+      const response = await fetch(`${sonarqubeUrl}/api/projects/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': authHeader,
+        },
+        body: `name=${title}&project=${title}&key=${title}`,
       });
+
+      if (response.ok) {
+        const project = await response.json();
+        return project
+      } else {
+        console.error(`Error to create project in sonar. status code: ${response.status}`);
+        console.error(await response.text());
+      }
     } catch (error) {
-      console.error('Service error @createNewProject', error.message);
+      console.error('Repository error @createNewProject', error.message);
+      throw error;
+    }
+  },
+  createProjectAnalysisToken: async ({ key }) => {
+    console.log(key);
+    try {
+      const searchParams = new URLSearchParams();
+      searchParams.append('name', key);
+      searchParams.append('type', 'PROJECT_ANALYSIS_TOKEN');
+      searchParams.append('projectKey', key);
+
+      const response = await fetch(`${sonarqubeUrl}/api/user_tokens/generate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': userAuthHeader,
+        },
+        body: searchParams.toString(),
+      });
+      if (response.ok) {
+        const project = await response.json();
+        return project
+      } else {
+        console.error(`Error to create project token in sonar. status code: ${response.status}`);
+        console.error(await response.text());
+      }
+    } catch (error) {
+      console.error('Repository error @createProjectAnalysisToken', error.message);
+      throw error;
     }
   }
 }
