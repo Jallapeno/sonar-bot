@@ -83,7 +83,7 @@ export const sonarRepository = {
       `cd directories/${name} && sonar-scanner -Dsonar.projectKey=${key} -Dsonar.sources=. -Dsonar.host.url=${sonarqubeUrl} -Dsonar.login=${token}`
     )
     .then((result) => {
-      console.log(`\n${result}`);
+      console.log(`success creating scan for project: ${name}`);
     })
     .catch((error) => {
       console.error(`@startScanner repository. Erro during command executing: ${error.message}`);
