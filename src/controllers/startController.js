@@ -8,7 +8,7 @@ export const startController = {
         await sonarServices.startScanner(project)
       })
     } else {
-      console.log('notting scan');
+      console.log('not projects to configure scan');
     }
   }
 }
